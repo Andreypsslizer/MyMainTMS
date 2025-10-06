@@ -37,6 +37,7 @@ public class MyMain {
     //выводящую на экран сумму цифр n. Например: n =26, в результате мы должны получить 8
     //(2+6).
     public static void dividingInTwoNumbers(int n) {
+        //Со строкой первое что пришло в голову
         /*String nStr = Integer.toString(n);
         int sum = 0;
         for (int i = 0; i < nStr.length(); i++) {
