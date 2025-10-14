@@ -35,6 +35,14 @@ public class MyMain {
         System.out.println("HOMEWORK 4");
         System.out.println("-".repeat(50));
         changeTheArray();
+        System.out.println("-".repeat(50));
+        System.out.println("HOMEWORK 5");
+        System.out.println("-".repeat(50));
+        createAddMultiArray();
+        System.out.println("-".repeat(50));
+        paintChessBoard();
+        System.out.println("-".repeat(50));
+        makeSnakeArray(4, 6);
     }
 
 
@@ -279,22 +287,136 @@ public class MyMain {
         //содержит нуля в начале, кроме самого числа 0.
         System.out.println("How many digits in your number?");
         int[] arrayWithStar = new int[sc.nextInt()];
+        int value;
         System.out.println("Enter the number digit by digit");
-        for (int i = 0; i < arrayWithStar.length; i++) {
-            arrayWithStar[i] = sc.nextInt();
+        for (int i = 0; i < arrayWithStar.length;) {
+            if ((value = sc.nextInt()) < 0 || value > 9 || i == 0 && value == 0){
+                System.out.println("You entered the wrong number! The first number can't be 0.");
+                continue;
+            }
+            arrayWithStar[i] = value;
+            i++;
         }
-        int nmb = 0;
-        for (int i = 0; i < arrayWithStar.length; i++) {
-            nmb = nmb * 10 + arrayWithStar[i];
+        if (arrayWithStar[arrayWithStar.length - 1] != 9) {
+            arrayWithStar[arrayWithStar.length - 1] = arrayWithStar[arrayWithStar.length - 1] + 1;
+        } else {
+            int nmb = 0;
+            for (int i = 0; i < arrayWithStar.length; i++) {
+                nmb = nmb * 10 + arrayWithStar[i];
+            }
+            nmb++;
+            String str = "" + nmb;
+            int[] newArrWithStar = new int[str.length()];
+            for (int i = 0; i < newArrWithStar.length; i++) {
+                newArrWithStar[i] = Character.getNumericValue(str.charAt(i));
+            }
+            arrayWithStar = newArrWithStar;
         }
-        nmb++;
-        String str = "" + nmb;
-        int[] newArrWithStar = new int[str.length()];
-        for (int i = 0; i < newArrWithStar.length; i++) {
-            newArrWithStar[i] = Character.getNumericValue(str.charAt(i));
-        }
-        for (int i : newArrWithStar) {
+
+        for (int i : arrayWithStar) {
             System.out.print(i + " ");
+        }
+    }
+
+
+    //Задача 1:
+    //1.1 Создать двумерный массив, заполнить его случайными числами.
+    //1.2 Добавить к каждому значению число, которое пользователь будет вводить с консоли.
+    //1.3 Найти сумму всех получившихся элементов и вывести в консоль.
+    public static void createAddMultiArray() {
+        int[][] multiArray = new int[3][3];
+        Random rnd = new Random();
+        for (int i = 0; i < multiArray.length; i++) {
+            for (int j = 0; j < multiArray[i].length; j++) {
+                multiArray[i][j] = rnd.nextInt(9);
+            }
+        }
+        for (int[] col : multiArray) {
+            for (int row : col) {
+                System.out.print(row + " ");
+            }
+            System.out.println();
+        }
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number to add to each number in array");
+        int numberToAdd = sc.nextInt();
+        for (int i = 0; i < multiArray.length; i++) {
+            for (int j = 0; j < multiArray[i].length; j++) {
+                multiArray[i][j] += numberToAdd;
+            }
+        }
+
+        for (int[] col : multiArray) {
+            for (int row : col) {
+                System.out.print(row + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
+    //Задача 2:
+    //Создать программу для раскраски шахматной доски с помощью цикла. Создать
+    //двумерный массив String 8х8. С помощью циклов задать элементам массива значения
+    //B(Black) или W(White).
+    public static void paintChessBoard() {
+        String[][] chessBoard = new String[8][8];
+        String b = "B", w = "W";
+        for (int i = 0; i < chessBoard.length; i++) {
+            for (int j = 0; j < chessBoard[i].length; j++) {
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
+                        chessBoard[i][j] = w;
+                    } else {
+                        chessBoard[i][j] = b;
+                    }
+                } else {
+                    if (j % 2 == 0) {
+                        chessBoard[i][j] = b;
+                    } else {
+                        chessBoard[i][j] = w;
+                    }
+                }
+            }
+        }
+        for (String[] col : chessBoard) {
+            for (String row : col) {
+                System.out.print(row + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
+    //Задача *:
+    //Даны числа n и m. Создайте массив A[n][m] и заполните его змейкой (см. пример).
+    //Формат входных данных:
+    //Программа получает на вход два числа n и m.
+    //Формат выходных данных:
+    //Программа должна вывести полученный массив, отводя на вывод каждого числа ровно 3
+    //символа.
+    public static void makeSnakeArray(int a, int b) {
+        Scanner sc = new Scanner(System.in);
+        int [][] snakeArray = new int[a][b];
+        int res = 0;
+        for (int i = 0; i < snakeArray.length; i++) {
+            if (i % 2 == 0){
+                for (int j = 0; j < snakeArray[i].length ; j++) {
+                    snakeArray[i][j] = res;
+                    res++;
+                }
+            } else {
+                for (int j = snakeArray[i].length - 1; j >= 0 ; j--) {
+                    snakeArray[i][j] = res;
+                    res++;
+                }
+            }
+        }
+        for (int[] col : snakeArray) {
+            for (int row : col) {
+                System.out.print(row + " ");
+            }
+            System.out.println();
         }
     }
 }
