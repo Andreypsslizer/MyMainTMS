@@ -1,5 +1,8 @@
 package Main;
 
+import Bancomate.Bancomate;
+import CreditCard.CreditCard;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,6 +23,7 @@ public class MyMain {
         switchValues(3, 5);
         System.out.println();
         System.out.println("-".repeat(50));
+
         System.out.println("HOMEWORK 3");
         System.out.println("-".repeat(50));
         checkEven(6);
@@ -32,10 +36,12 @@ public class MyMain {
         System.out.println("-".repeat(50));
         sumToEnteredNum();
         System.out.println("-".repeat(50));
+
         System.out.println("HOMEWORK 4");
         System.out.println("-".repeat(50));
         changeTheArray();
         System.out.println("-".repeat(50));
+
         System.out.println("HOMEWORK 5");
         System.out.println("-".repeat(50));
         createAddMultiArray();
@@ -43,6 +49,35 @@ public class MyMain {
         paintChessBoard();
         System.out.println("-".repeat(50));
         makeSnakeArray(4, 6);
+
+        System.out.println("-".repeat(50));
+
+        System.out.println("HOMEWORK 6");
+        System.out.println("-".repeat(50));
+        CreditCard bveb = new CreditCard();
+        bveb.bankAccount = "8340958723";
+        bveb.amountAcc = 3000;
+        CreditCard bsb = new CreditCard();
+        bsb.bankAccount = "5469515489";
+        bsb.amountAcc = 1000;
+        CreditCard prior = new CreditCard();
+        prior.bankAccount = "1234567890";
+        prior.amountAcc = 5000;
+        bveb.addMoney(1056.5);
+        bsb.addMoney(784);
+        prior.withdrawMoney(4233);
+        bveb.takeInformationCard();
+        bsb.takeInformationCard();
+        prior.takeInformationCard();
+
+        System.out.println("-".repeat(50));
+
+        Bancomate bveb = new Bancomate(6,10,5);
+        System.out.println("Can I withdraw? " + bveb.withdrawMoney(960));
+        System.out.println();
+        System.out.println("Can I withdraw? " + bveb.withdrawMoney(100));
+        System.out.println();
+        System.out.println("Can I withdraw? " + bveb.withdrawMoney(100));
     }
 
 
