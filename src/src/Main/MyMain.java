@@ -1,6 +1,8 @@
 package Main;
 
+import Animal.*;
 import Bancomate.Bancomate;
+import Clinic.Patient;
 import CreditCard.CreditCard;
 
 import java.util.Random;
@@ -72,12 +74,24 @@ public class MyMain {
 
         System.out.println("-".repeat(50));
 
-        Bancomate bveb = new Bancomate(6,10,5);
-        System.out.println("Can I withdraw? " + bveb.withdrawMoney(960));
+        Bancomate veb = new Bancomate(6,10,5);
+        System.out.println("Can I withdraw? " + veb.withdrawMoney(960));
         System.out.println();
-        System.out.println("Can I withdraw? " + bveb.withdrawMoney(100));
+        System.out.println("Can I withdraw? " + veb.withdrawMoney(100));
         System.out.println();
-        System.out.println("Can I withdraw? " + bveb.withdrawMoney(100));
+        System.out.println("Can I withdraw? " + veb.withdrawMoney(100));
+
+        System.out.println("-".repeat(50));
+
+        Patient andrey = new Patient(2);
+        andrey.assignTreatment();
+
+        System.out.println("-".repeat(50));
+
+        Rabbit bunny = new Rabbit();
+        bunny.eat("grass");
+        bunny.eat("meal");
+        bunny.voice();
     }
 
 
