@@ -4,13 +4,19 @@ import Animal.*;
 import Bancomate.Bancomate;
 import Clinic.Patient;
 import CreditCard.CreditCard;
+import Employee.*;
+import Geometry.Circle;
+import Geometry.Figure;
+import Geometry.Rectangle;
+import Geometry.Triangle;
+import SystemUser.*;
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class MyMain {
-    public static void main(String[] args) {
-        printNameAge();
+    public static void main(String[] args) throws CloneNotSupportedException {
+        /*printNameAge();
         System.out.println("-".repeat(50));
         calculateWithFormula(4, 3);
         System.out.println("-".repeat(50));
@@ -92,6 +98,56 @@ public class MyMain {
         bunny.eat("grass");
         bunny.eat("meal");
         bunny.voice();
+
+
+        System.out.println("-".repeat(50));
+
+        System.out.println("HOMEWORK 9");
+        System.out.println("-".repeat(50));
+
+        Employee dirik = new Director();
+        dirik.sayJobTitle();
+
+
+        Figure[] figures = new Figure[] {
+                new Circle(5),
+                new Rectangle(4, 6),
+                new Triangle(5),
+                new Triangle(5, 3, 4),
+                new Rectangle(8)
+        };
+        double perimeterMas = 0;
+        double areaMas = 0;
+        for (Figure figure : figures) {
+            perimeterMas += figure.getPerimeter();
+            areaMas += figure.getArea();
+        }
+        System.out.format("Perimeter of all this figures is %.2f sm\n", perimeterMas);
+        System.out.format("Area of all this figures is %.2f sm\u00B2 \n", areaMas);
+
+
+        Triangle someTriangle = new Triangle(5);
+        System.out.println("First created triangle: " + someTriangle);
+        System.out.println("Cloned triangle: " + someTriangle.clone());
+
+         */
+        System.out.println("-".repeat(50));
+
+        System.out.println("HOMEWORK 10");
+        System.out.println("-".repeat(50));
+
+        SystemUser admin = new SystemUser("Admin", 25, "admin@mail.com");
+        SystemUser guest = new SystemUser("Guest", 12, "guest@mail.com");
+        SystemUser anonymous = new SystemUser("Anonim", 1, "qwerty@mail.com");
+        SystemUser user = new SystemUser("Guest", 12, "guest@mail.com");
+        System.out.println(user.equals(admin));
+        System.out.println(guest.equals(user));
+        System.out.println(anonymous.hashCode());
+        System.out.println("Are hashcodes are the same?(user and guest): " + (user.hashCode() == guest.hashCode()));
+        System.out.println("Are hashcodes are the same?(admin and guest): " + (admin.hashCode() == guest.hashCode()));
+
+        ClonedUser clonedGuest = new ClonedUser();
+        clonedGuest.clone(admin, 1);
     }
 
 
