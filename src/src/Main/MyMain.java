@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class MyMain {
     public static void main(String[] args) throws CloneNotSupportedException {
-        printNameAge();
+        /*printNameAge();
         System.out.println("-".repeat(50));
         calculateWithFormula(4, 3);
         System.out.println("-".repeat(50));
@@ -154,8 +154,8 @@ public class MyMain {
 
         checkLengthStr();
         isPalindrome();
-
-        //calculator();
+*/
+        calculator();
     }
 
 
@@ -638,15 +638,20 @@ public class MyMain {
         return true;
     }
 
-    /*public static void calculator() {
+    public static void calculator() {
         System.out.println("This is Calculator. Allowed characters:");
         System.out.println("7 8 9 / \n 4 5 6 * \n 1 2 3 - \n 0 . = +");
         System.out.println("Please, enter the operation on characters");
         Scanner sc = new Scanner(System.in);
         StringBuilder operation = new StringBuilder();
         while (true) {
-            if (sc.nextLine().equals("=")) break;
-            operation.append(sc.next() + ",");
+            if (sc.next().equals("=")) break;
+            if (sc.hasNextInt()) {
+                operation.append(sc.nextInt()).append(",");
+            } else {
+                operation.append(sc.next()).append(",");
+            }
+
             System.out.println(operation);
         }
         String[] sMasMultiply = operation.toString().split(",");
@@ -693,5 +698,5 @@ public class MyMain {
         System.out.println(operation);
     }
 
-     */
+
 }
