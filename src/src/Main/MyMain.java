@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class MyMain {
     public static void main(String[] args) throws CloneNotSupportedException {
-        /*printNameAge();
+        printNameAge();
         System.out.println("-".repeat(50));
         calculateWithFormula(4, 3);
         System.out.println("-".repeat(50));
@@ -130,9 +130,8 @@ public class MyMain {
         System.out.println("First created triangle: " + someTriangle);
         System.out.println("Cloned triangle: " + someTriangle.clone());
 
-         */
-        System.out.println("-".repeat(50));
 
+        System.out.println("-".repeat(50));
         System.out.println("HOMEWORK 10");
         System.out.println("-".repeat(50));
 
@@ -148,6 +147,15 @@ public class MyMain {
 
         ClonedUser clonedGuest = new ClonedUser();
         clonedGuest.clone(admin, 1);
+
+        System.out.println("-".repeat(50));
+        System.out.println("HOMEWORK 11");
+        System.out.println("-".repeat(50));
+
+        checkLengthStr();
+        isPalindrome();
+
+        //calculator();
     }
 
 
@@ -524,4 +532,166 @@ public class MyMain {
             System.out.println();
         }
     }
+
+    public static void checkLengthStr() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter 3 strings please");
+        String first = sc.nextLine();
+        String second = sc.nextLine();
+        String third = sc.nextLine();
+        if (first.length() > second.length() && first.length() > third.length()) {
+            System.out.println("Biggest: " + first + " " + first.length());
+        } else if (second.length() > third.length()) {
+            System.out.println("Biggest: " + second + " " + second.length());
+        } else {
+            System.out.println("Biggest: " + third + " " + third.length());
+        }
+        if (first.length() < second.length() && first.length() < third.length()) {
+            System.out.println("Smallest: " + first + " " + first.length());
+        } else if (second.length() < third.length()) {
+            System.out.println("Smallest: " + second + " " + second.length());
+        } else {
+            System.out.println("Smallest: " + third + " " + third.length());
+        }
+
+        int lthF = first.length();
+        int lthS = second.length();
+        int lthT = third.length();
+        if (lthF <= lthS && lthS <= lthT) {
+            System.out.println(first + "\n" + second + "\n" + third);
+        } else if (lthS <= lthF && lthF <= lthT) {
+            System.out.println(second + "\n" + first + "\n" + third);
+        } else if (lthF <= lthS && lthS >= lthT) {
+            System.out.println(first + "\n" + third + "\n" + second);
+        } else if (lthT <= lthS && lthS >= lthF) {
+            System.out.println(third + "\n" + second + "\n" + first);
+        } else {
+            System.out.println(second + "\n" + third + "\n" + first);
+        }
+
+        int averageL = (lthF + lthS + lthT) / 3;
+        if (lthF <= averageL) System.out.println(first + ", " + lthF);
+        if (lthS <= averageL) System.out.println(second + ", " + lthS);
+        if (lthT <= averageL) System.out.println(third + ", " + lthT);
+
+        String[] splFirst = first.split(" ");
+        String[] splSecond = second.split(" ");
+        String[] splThird = third.split(" ");
+        for (String s : splFirst) {
+            if (checkRepeat(s)) System.out.println(s);
+        }
+        for (String s : splSecond) {
+            if (checkRepeat(s)) System.out.println(s);
+        }
+        for (String s : splThird) {
+            if (checkRepeat(s)) System.out.println(s);
+        }
+
+        char[] firstChar = first.toCharArray();
+        for (char ch : firstChar) {
+            System.out.print(ch);
+            System.out.print(ch);
+        }
+    }
+
+    public static void isPalindrome() {
+        System.out.println("Enter the string please");
+        Scanner sc = new Scanner(System.in);
+        String first = sc.nextLine().toLowerCase();;
+        String[] splFirst = first.split(" ");
+        System.out.println("Which word in order should be checked? (number)");
+        int wordNum = sc.nextInt();
+        if (wordNum > splFirst.length || wordNum < 0) {
+            System.out.println("Incorrect number! Please try again");
+            return;
+        }
+        StringBuilder word = new StringBuilder(splFirst[wordNum]).reverse();
+        if(splFirst[wordNum].contentEquals(word)) {
+            System.out.println("This word is palindrome");
+        } else {
+            System.out.println("This word isn't palindrome");
+        }
+        //char[] chars = splFirst[wordNum].toCharArray();
+        //boolean isEquals = false;
+        /*
+        for (int i = 0, j = chars.length - 1; i < chars.length / 2; i++, j--) {
+            if (chars[i] != chars[j]) {
+                isEquals = false;
+                break;
+            }
+            isEquals = true;
+        }
+        System.out.println(isEquals ? "This word is palindrome" : "This word isn't palindrome");
+        */
+    }
+
+    public static boolean checkRepeat(String str) {
+        char[] chars = str.toCharArray();
+
+        for(int i = 0;i<chars.length;i++) {
+            for (int j = i; j < chars.length - 1; j++) {
+                if(chars[i] == chars[j + 1]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /*public static void calculator() {
+        System.out.println("This is Calculator. Allowed characters:");
+        System.out.println("7 8 9 / \n 4 5 6 * \n 1 2 3 - \n 0 . = +");
+        System.out.println("Please, enter the operation on characters");
+        Scanner sc = new Scanner(System.in);
+        StringBuilder operation = new StringBuilder();
+        while (true) {
+            if (sc.nextLine().equals("=")) break;
+            operation.append(sc.next() + ",");
+            System.out.println(operation);
+        }
+        String[] sMasMultiply = operation.toString().split(",");
+        int res = 0;
+        for (int i = 0; i < sMasMultiply.length; i++) {
+            if (sMasMultiply[i].equals("*")){
+                res += Integer.parseInt(sMasMultiply[i - 1]) * Integer.parseInt(sMasMultiply[i + 1]);
+                operation.delete(operation.indexOf("*") - sMasMultiply[i - 1].length() - 1,
+                        operation.indexOf("*") + sMasMultiply[i + 1].length() + 2);
+                operation.append(res);
+                res = 0;
+            }
+        }
+        String[] sMasDivide = operation.toString().split(",");
+        for (int i = 0; i < sMasDivide.length; i++) {
+            if (sMasDivide[i].equals("/")){
+                res += Integer.parseInt(sMasDivide[i - 1]) / Integer.parseInt(sMasDivide[i + 1]);
+                operation.delete(operation.indexOf("/") - sMasDivide[i - 1].length() - 1,
+                        operation.indexOf("/") + sMasDivide[i + 1].length() + 2);
+                operation.append(res);
+                res = 0;
+            }
+        }
+        String[] sMasPlus = operation.toString().split(",");
+        for (int i = 0; i < sMasPlus.length; i++) {
+            if (sMasPlus[i].equals("+")){
+                res += Integer.parseInt(sMasPlus[i - 1]) + Integer.parseInt(sMasPlus[i + 1]);
+                operation.delete(operation.indexOf("+") - sMasPlus[i - 1].length() - 1,
+                        operation.indexOf("+") + sMasPlus[i + 1].length() + 2);
+                operation.append(res);
+                res = 0;
+            }
+        }
+        String[] sMasMinus = operation.toString().split(",");
+        for (int i = 0; i < sMasMinus.length; i++) {
+            if (sMasMinus[i].equals("-")){
+                res += Integer.parseInt(sMasMinus[i - 1]) - Integer.parseInt(sMasMinus[i + 1]);
+                operation.delete(operation.indexOf("-") - sMasMinus[i - 1].length() - 1,
+                        operation.indexOf("-") + sMasMinus[i + 1].length() + 2);
+                operation.append(res);
+                res = 0;
+            }
+        }
+        System.out.println(operation);
+    }
+
+     */
 }
