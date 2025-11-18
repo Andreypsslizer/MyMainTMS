@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        groupInfo();
+        abbreviations();
     }
 
     //Задача 1:
@@ -17,7 +17,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String userStr = sc.nextLine();
         System.out.println("Entered string: " + userStr);
-        Pattern pattern = Pattern.compile("(\\p{Lu}{2,6})");
+        Pattern pattern = Pattern.compile("\\b(\\p{Lu}{2,6})\\b");
         Matcher matcher = pattern.matcher(userStr);
         while (matcher.find()) {
             System.out.println(matcher.group());
